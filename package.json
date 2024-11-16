@@ -1,7 +1,7 @@
 {
   "name": "minimal-carousel",
   "version": "0.0.0",
-  "private": true,
+  "private": false,
   "type": "module",
   "main": "./dist/minimal-carousel.umd.cjs",
   "module": "./dist/minimal-carousel.js",
