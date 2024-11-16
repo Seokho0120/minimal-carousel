@@ -1,6 +1,7 @@
 {
   "name": "minimal-carousel",
   "version": "0.0.0",
+  "description": "Minimal Carousel is a simple and intuitive carousel library that provides a user-friendly interface. This library includes only the essential features that users need, designed for quick implementation without complexity.",
   "private": false,
   "type": "module",
   "main": "./dist/minimal-carousel.umd.cjs",
@@ -16,6 +17,24 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Seokho0120/minimal-carousel"
+  },
+  "keywords": [
+    "carousel",
+    "slider",
+    "swiper",
+    "swipe",
+    "framework",
+    "gallery",
+    "plugin",
+    "vue"
+  ],
+  "author": {
+    "name": "seokho",
+    "url": "https://river-dev.vercel.app/"
+  },
+  "bugs": {
+    "url": "https://github.com/Seokho0120/minimal-carousel/issues",
+    "email": "seokho0120@gmail.com"
   },
   "scripts": {
     "dev": "vite",
