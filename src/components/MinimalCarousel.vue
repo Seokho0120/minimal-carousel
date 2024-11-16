@@ -19,7 +19,6 @@ const props = withDefaults(
       subTitle: string;
       content: string;
     }[];
-    lazy?: boolean;
   }>(),
   {
     autoPlayDuration: 3000,
