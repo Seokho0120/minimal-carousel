@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, toRefs, watch } from "vue";
-import type { ImageItemsType } from "@/types/items.type";
+import { computed, onMounted, ref, toRefs, watch } from 'vue';
+import type { ImageItemsType } from '@/types/items.type';
 
 const props = withDefaults(
   defineProps<{
@@ -23,7 +23,7 @@ const props = withDefaults(
   }>(),
   {
     autoPlayDuration: 3000,
-  }
+  },
 );
 
 const { imageItems, scrollbar, autoPlay, pagination } = toRefs(props);
@@ -67,7 +67,7 @@ function dragging(event: MouseEvent) {
   const dragX = event.pageX;
   const walk = ((dragX - startX.value) / window.innerWidth) * 100; // 드래그 거리 계산
 
-  carouselRef.value.style.transition = "none"; // 드래그 중에는 애니메이션 비활성화
+  carouselRef.value.style.transition = 'none'; // 드래그 중에는 애니메이션 비활성화
   carouselRef.value.style.transform = `translateX(${
     startTranslateX.value + walk
   }%)`; // 이동
@@ -94,7 +94,7 @@ function dragStop(event: MouseEvent) {
   }
 
   if (carouselRef.value) {
-    carouselRef.value.style.transition = "transform 0.4s ease"; // 이미지 드래그할때 여러 애니메이션을 줄 수 있음 일반적으로 ease
+    carouselRef.value.style.transition = 'transform 0.4s ease'; // 이미지 드래그할때 여러 애니메이션을 줄 수 있음 일반적으로 ease
     // 드래그 종료 시 최종 위치를 정해줘야 그 이미지를 볼 수 있기 떄문에
     carouselRef.value.style.transform = `translateX(${
       currentIndex.value * -100
@@ -126,44 +126,44 @@ watch(
       }
     }
   },
-  { immediate: true }
+  { immediate: true },
 );
 
 function getPaginationClass(idx: number) {
   const isDynamicBullets =
-    typeof pagination.value === "object" && pagination.value.dynamicBullets;
+    typeof pagination.value === 'object' && pagination.value.dynamicBullets;
   const isActive = idx === currentIndex.value;
   const isNextOrPrev =
     idx === currentIndex.value - 1 || idx === currentIndex.value + 1;
 
   if (isDynamicBullets) {
     return isActive
-      ? "opacity-100 scale-125" // 현재 idx
+      ? 'opacity-100 scale-125' // 현재 idx
       : isNextOrPrev
-      ? "opacity-70 scale-100" // 현재 idx 앞뒤
-      : "opacity-30 scale-75"; // 나머지 idx
+      ? 'opacity-70 scale-100' // 현재 idx 앞뒤
+      : 'opacity-30 scale-75'; // 나머지 idx
   } else {
     return isActive
-      ? "opacity-100"
+      ? 'opacity-100'
       : isNextOrPrev
-      ? "opacity-40"
-      : "opacity-30";
+      ? 'opacity-40'
+      : 'opacity-30';
   }
 }
 
 function effectFadeStyle(index: number) {
   return `${
     currentIndex.value === index
-      ? "opacity-100 transition-opacity duration-1000 ease-in-out"
-      : "opacity-0"
+      ? 'opacity-100 transition-opacity duration-1000 ease-in-out'
+      : 'opacity-0'
   }`;
 }
 
 function handleKeyDown(event: KeyboardEvent) {
   if (props.keyboardControl) {
-    if (event.key === "ArrowRight") {
+    if (event.key === 'ArrowRight') {
       nextHandler();
-    } else if (event.key === "ArrowLeft") {
+    } else if (event.key === 'ArrowLeft') {
       prevHandler();
     }
   }
@@ -181,7 +181,7 @@ const getParallaxStyle = (index: number, offset: number) => {
 
   return {
     transform: `translateX(${translateXValue}px)`,
-    transition: "transform 0.6s ease",
+    transition: 'transform 0.6s ease',
   };
 };
 </script>
