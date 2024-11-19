@@ -6,6 +6,7 @@
   "type": "module",
   "main": "./dist/minimal-carousel.umd.cjs",
   "module": "./dist/minimal-carousel.js",
+  "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/minimal-carousel.js",
