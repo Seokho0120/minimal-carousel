@@ -14,6 +14,7 @@ const props = withDefaults(
     autoPlayDuration?: number;
     disableOnInteraction?: boolean;
     pauseOnMouseEnter?: boolean;
+    stopOnLastSlide?: boolean;
     effectFade?: boolean;
     keyboardControl?: boolean;
     parallax?: boolean;
@@ -33,6 +34,7 @@ const props = withDefaults(
     autoPlayDuration: 2500,
     disableOnInteraction: true,
     pauseOnMouseEnter: false,
+    stopOnLastSlide: false,
     effectFade: false,
     keyboardControl: false,
     parallax: false,
@@ -57,6 +59,13 @@ function handleButtonClick() {
 function nextHandler() {
   if (buttonClicked.value === true) {
     pauseAutoPlay();
+  }
+
+  if (
+    props.stopOnLastSlide &&
+    currentIndex.value === imageItems.value.length - 1
+  ) {
+    return;
   }
 
   if (currentIndex.value < imageItems.value.length - 1) {
@@ -137,7 +146,14 @@ function goToImage(index: number) {
 function startAutoPlay() {
   if (autoPlay.value) {
     autoPlayInterval.value = setInterval(() => {
-      nextHandler();
+      if (
+        props.stopOnLastSlide &&
+        currentIndex.value === imageItems.value.length - 1
+      ) {
+        pauseAutoPlay();
+      } else {
+        nextHandler();
+      }
     }, props.autoPlayDuration);
   }
 }
