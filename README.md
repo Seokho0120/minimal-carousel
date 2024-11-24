@@ -4,14 +4,14 @@ Minimal Carousel is a simple and intuitive carousel library that provides a user
 
 ## Features
 
-- Responsive Design: Adapts seamlessly to various screen sizes.
 - Drag-and-Drop Navigation: Users can swipe images with mouse drag or touch gestures.
 - AutoPlay Functionality: Automatically transitions between images at specified intervals.
 - Customizable Navigation Buttons: Easily show or hide previous and next buttons.
-- Pagination Support: Visual indicators for the current image position.
+- Pagination: Visual indicators for the current image position.
 - Keyboard Navigation: Supports navigation using keyboard arrow keys.
 - Parallax Effect: Adds a depth effect to the images for a more engaging experience.
 - Scrollbar: Optional scrollbar for additional navigation feedback.
+- Customizable Transition Effects: Supports fade transitions and other customizable effects for image transitions.
 
 ## Installation
 
@@ -45,19 +45,22 @@ const images = [
 
 The component accepts the following props
 
-| Prop Name        | Type                    | Default Value | Description                                                                         |
-| ---------------- | ----------------------- | ------------- | ----------------------------------------------------------------------------------- |
-| imageItems       | `Array<ImageItemsType>` | Required      | An array of image objects, each containing a link and name property.                |
-| showPrevButton   | `Boolean`               | false         | Show or hide the previous button.                                                   |
-| showNextButton   | `Boolean`               | false         | Show or hide the next button.                                                       |
-| pagination       | `Boolean`               | false         | Show or hide the pagination.                                                        |
-| scrollbar        | `Boolean`               | false         | Show or hide the scrollbar.                                                         |
-| autoPlay         | `Boolean`               | false         | Enable or disable auto play.                                                        |
-| autoPlayDuration | `Number`                | 3000          | Duration in milliseconds for each slide during auto play.                           |
-| effectFade       | `Boolean`               | false         | Enable fade effect between slides.                                                  |
-| keyboardControl  | `Boolean`               | false         | Allow navigation using keyboard arrow keys.                                         |
-| parallax         | `Boolean`               | false         | Enable parallax effect for additional depth.                                        |
-| contents         | `Array<Object>	`         | undefined     | An array of content objects containing title, subTitle, and content for each image. |
+| Prop Name            | Type                    | Default Value | Description                                                                         |
+| -------------------- | ----------------------- | ------------- | ----------------------------------------------------------------------------------- |
+| imageItems           | `Array<ImageItemsType>` | Required      | An array of image objects, each containing a link and name property.                |
+| showPrevButton       | `Boolean`               | false         | Show or hide the previous button.                                                   |
+| showNextButton       | `Boolean`               | false         | Show or hide the next button.                                                       |
+| pagination           | `Boolean`               | false         | Show or hide the pagination.                                                        |
+| scrollbar            | `Boolean`               | false         | Show or hide the scrollbar.                                                         |
+| autoPlay             | `Boolean`               | false         | Enable or disable auto play.                                                        |
+| autoPlayDuration     | `Number`                | 2500          | Duration in milliseconds for each slide during auto play.                           |
+| disableOnInteraction | `Boolean`               | true          | Disable auto play when the user interacts with the carousel.                        |
+| pauseOnMouseEnter    | `Boolean`               | false         | Pause auto play when the mouse hovers over the carousel.                            |
+| stopOnLastSlide      | `Boolean`               | false         | Stop auto play when reaching the last slide.                                        |
+| effectFade           | `Boolean`               | false         | Enable fade effect between slides.                                                  |
+| keyboardControl      | `Boolean`               | false         | Allow navigation using keyboard arrow keys.                                         |
+| parallax             | `Boolean`               | false         | Enable parallax effect for additional depth.                                        |
+| contents             | `Array<Object>	`         | undefined     | An array of content objects containing title, subTitle, and content for each image. |
 
 ### Example
 
@@ -71,6 +74,9 @@ The component accepts the following props
     scrollbar
     autoPlay
     autoPlayDuration
+    disableOnInteraction
+    pauseOnMouseEnter
+    stopOnLastSlide
     effectFade
     keyboardControl
     parallax
