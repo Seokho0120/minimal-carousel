@@ -7,7 +7,8 @@ const props = withDefaults(
     imageItems: ImageItemsType[];
     showPrevButton?: boolean;
     showNextButton?: boolean;
-    pagination?: boolean | { dynamicBullets?: boolean };
+    pagination?: boolean;
+    dynamicBullets?: boolean;
     scrollbar?: boolean;
     autoPlay?: boolean;
     disableOnInteraction?: boolean;
@@ -25,6 +26,7 @@ const props = withDefaults(
     showPrevButton: true,
     showNextButton: true,
     pagination: false,
+    dynamicBullets: false,
     scrollbar: false,
     autoPlay: false,
     disableOnInteraction: true,
@@ -166,13 +168,11 @@ watch(
 );
 
 function getPaginationClass(idx: number) {
-  const isDynamicBullets =
-    typeof pagination.value === 'object' && pagination.value.dynamicBullets;
   const isActive = idx === currentIndex.value;
   const isNextOrPrev =
     idx === currentIndex.value - 1 || idx === currentIndex.value + 1;
 
-  if (isDynamicBullets) {
+  if (props.dynamicBullets) {
     return isActive
       ? 'opacity-100 scale-125' // 현재 idx
       : isNextOrPrev
