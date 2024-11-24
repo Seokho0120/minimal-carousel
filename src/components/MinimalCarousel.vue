@@ -10,6 +10,7 @@ const props = withDefaults(
     pagination?: boolean | { dynamicBullets?: boolean };
     scrollbar?: boolean;
     autoPlay?: boolean;
+    disableOnInteraction?: boolean;
     autoPlayDuration?: number;
     effectFade?: boolean;
     keyboardControl?: boolean;
@@ -21,7 +22,17 @@ const props = withDefaults(
     }[];
   }>(),
   {
-    autoPlayDuration: 3000,
+    showPrevButton: true,
+    showNextButton: true,
+    pagination: false,
+    scrollbar: false,
+    autoPlay: false,
+    disableOnInteraction: true,
+    autoPlayDuration: 2500,
+    effectFade: false,
+    keyboardControl: false,
+    parallax: false,
+    contents: undefined,
   },
 );
 
@@ -34,7 +45,16 @@ const isDragging = ref(false);
 const startX = ref(0);
 const startTranslateX = ref(0);
 
+const buttonClicked = ref(false);
+function handleButtonClick() {
+  buttonClicked.value = true;
+}
+
 function nextHandler() {
+  if (buttonClicked.value === true) {
+    pauseAutoPlay();
+  }
+
   if (currentIndex.value < imageItems.value.length - 1) {
     currentIndex.value += 1;
   } else {
@@ -43,6 +63,10 @@ function nextHandler() {
 }
 
 function prevHandler() {
+  if (buttonClicked.value === true) {
+    pauseAutoPlay();
+  }
+
   if (currentIndex.value > 0) {
     currentIndex.value -= 1;
   } else {
@@ -111,6 +135,19 @@ function startAutoPlay() {
     autoPlayInterval.value = setInterval(() => {
       nextHandler();
     }, props.autoPlayDuration);
+  }
+}
+
+function pauseAutoPlay() {
+  if (autoPlayInterval.value) {
+    clearInterval(autoPlayInterval.value);
+    autoPlayInterval.value = null;
+  }
+}
+
+function handleInteraction() {
+  if (props.disableOnInteraction) {
+    pauseAutoPlay();
   }
 }
 
@@ -204,6 +241,7 @@ const getParallaxStyle = (index: number, offset: number) => {
         :class="`flex-shrink-0 w-full h-full ${
           effectFade && effectFadeStyle(index)
         }`"
+        @click="handleInteraction"
       >
         <div v-if="props.contents" class="relative">
           <h1
@@ -252,7 +290,12 @@ const getParallaxStyle = (index: number, offset: number) => {
       <button
         v-if="showPrevButton"
         type="button"
-        @click="prevHandler"
+        @click="
+          () => {
+            handleButtonClick();
+            prevHandler();
+          }
+        "
         :class="`absolute left-4 top-1/2 h-[1.8rem] w-[1.8rem] flex items-center justify-center rounded-full bg-white opacity-40 hover:opacity-60 ${
           currentIndex === 0 ? 'cursor-not-allowed' : ''
         }`"
@@ -284,7 +327,12 @@ const getParallaxStyle = (index: number, offset: number) => {
       <button
         v-if="showNextButton"
         type="button"
-        @click="nextHandler"
+        @click="
+          () => {
+            handleButtonClick();
+            nextHandler();
+          }
+        "
         :class="`absolute right-4 top-1/2 h-[1.8rem] w-[1.8rem] flex items-center justify-center rounded-full bg-white opacity-40 hover:opacity-60 ${
           currentIndex === imageItems.length - 1 ? 'cursor-not-allowed' : ''
         }`"
