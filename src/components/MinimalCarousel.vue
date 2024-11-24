@@ -11,8 +11,9 @@ const props = withDefaults(
     dynamicBullets?: boolean;
     scrollbar?: boolean;
     autoPlay?: boolean;
-    disableOnInteraction?: boolean;
     autoPlayDuration?: number;
+    disableOnInteraction?: boolean;
+    pauseOnMouseEnter?: boolean;
     effectFade?: boolean;
     keyboardControl?: boolean;
     parallax?: boolean;
@@ -29,8 +30,9 @@ const props = withDefaults(
     dynamicBullets: false,
     scrollbar: false,
     autoPlay: false,
-    disableOnInteraction: true,
     autoPlayDuration: 2500,
+    disableOnInteraction: true,
+    pauseOnMouseEnter: false,
     effectFade: false,
     keyboardControl: false,
     parallax: false,
@@ -153,6 +155,12 @@ function handleInteraction() {
   }
 }
 
+function handleMouseEnter() {
+  if (props.pauseOnMouseEnter) {
+    pauseAutoPlay();
+  }
+}
+
 watch(
   autoPlay,
   (newVal) => {
@@ -242,6 +250,8 @@ const getParallaxStyle = (index: number, offset: number) => {
           effectFade && effectFadeStyle(index)
         }`"
         @click="handleInteraction"
+        @mouseenter="handleMouseEnter"
+        @mouseleave="handleMouseEnter"
       >
         <div v-if="props.contents" class="relative">
           <h1

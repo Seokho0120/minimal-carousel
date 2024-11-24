@@ -28,7 +28,7 @@ const TEST = [
     <h1 class="text-3xl font-bold mb-4">Hello Minimal Carousel</h1>
 
     <div class="w-2/4">
-      <MinimalCarousel :imageItems="TEST" pagination dynamicBullets />
+      <MinimalCarousel :imageItems="TEST" autoPlay :pauseOnMouseEnter="true" />
     </div>
   </div>
 </template>
