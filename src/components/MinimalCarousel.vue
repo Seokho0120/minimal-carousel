@@ -92,7 +92,7 @@ function dragStart(event: MouseEvent) {
   if (carouselRef.value) {
     isDragging.value = true;
     startX.value = event.pageX;
-    startTranslateX.value = currentIndex.value * -100; // 현재 위치 저장
+    startTranslateX.value = currentIndex.value * -100;
   }
 }
 
