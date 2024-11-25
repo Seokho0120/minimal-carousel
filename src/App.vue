@@ -28,7 +28,13 @@ const TEST = [
     <h1 class="text-3xl font-bold mb-4">Hello Minimal Carousel</h1>
 
     <div class="w-2/4">
-      <MinimalCarousel :imageItems="TEST" autoPlay stopOnLastSlide />
+      <MinimalCarousel
+        :imageItems="TEST"
+        autoPlay
+        disableOnInteraction
+        pauseOnMouseEnter
+        stopOnLastSlide
+      />
     </div>
   </div>
 </template>

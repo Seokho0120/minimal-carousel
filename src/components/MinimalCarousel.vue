@@ -31,7 +31,7 @@ const props = withDefaults(
     dynamicBullets: false,
     scrollbar: false,
     autoPlay: false,
-    autoPlayDuration: 2500,
+    autoPlayDuration: 1000,
     disableOnInteraction: true,
     pauseOnMouseEnter: false,
     stopOnLastSlide: false,
