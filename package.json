@@ -1,6 +1,6 @@
 {
   "name": "minimal-carousel",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Minimal Carousel is a simple and intuitive carousel library that provides a user-friendly interface. This library includes only the essential features that users need, designed for quick implementation without complexity.",
   "private": false,
   "type": "module",
