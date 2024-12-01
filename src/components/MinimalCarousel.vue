@@ -3,6 +3,7 @@ import { computed, onMounted, ref, toRefs, watch } from 'vue';
 import type { ImageItemsType } from '@/types/items.type';
 import CarouselController from './CarouselController.vue';
 import CarouselPagination from './CarouselPagination.vue';
+import CarouselScrollbar from './CarouselScrollbar.vue';
 
 const props = withDefaults(
   defineProps<{
@@ -328,18 +329,11 @@ const getParallaxStyle = (index: number, offset: number) => {
       :goToImage="goToImage"
     />
 
-    <div
-      v-if="showScrollbar"
-      class="absolute bottom-0 left-0 right-0 h-1 bg-gray-400 transition-opacity duration-300"
-      :class="{ 'opacity-100': showScrollbar, 'opacity-0': !showScrollbar }"
-    >
-      <div
-        :style="{
-          width: `${((currentIndex + 1) / props.imageItems.length) * 100}%`,
-        }"
-        class="h-full bg-gray-200 transition-all duration-300"
-      />
-    </div>
+    <CarouselScrollbar
+      :showScrollbar="showScrollbar"
+      :currentIndex="currentIndex"
+      :imageItemsLength="imageItems.length"
+    />
   </div>
 </template>
 
