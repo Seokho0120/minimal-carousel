@@ -28,21 +28,7 @@ const TEST = [
     <h1 class="text-3xl font-bold mb-4">Hello Minimal Carousel</h1>
 
     <div class="w-2/4 h-full">
-      <MinimalCarousel
-        :imageItems="TEST"
-        :contents="[
-          {
-            title: '하이',
-            subTitle: 'ㅁㄴㅇ',
-            content: 'ㅁㄴㅇㅁㄴ',
-          },
-          {
-            title: '하이2',
-            subTitle: 'ㅁㄴㅇ2',
-            content: 'ㅁㄴㅇㅁㄴ2',
-          },
-        ]"
-      />
+      <MinimalCarousel :imageItems="TEST" pagination dynamicBullets />
     </div>
   </div>
 </template>

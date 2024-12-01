@@ -195,26 +195,6 @@ watch(
   { immediate: true },
 );
 
-function getPaginationClass(idx: number) {
-  const isActive = idx === currentIndex.value;
-  const isNextOrPrev =
-    idx === currentIndex.value - 1 || idx === currentIndex.value + 1;
-
-  if (props.dynamicBullets) {
-    return isActive
-      ? 'opacity-100 scale-125' // 현재 idx
-      : isNextOrPrev
-      ? 'opacity-70 scale-100' // 현재 idx 앞뒤
-      : 'opacity-30 scale-75'; // 나머지 idx
-  } else {
-    return isActive
-      ? 'opacity-100'
-      : isNextOrPrev
-      ? 'opacity-40'
-      : 'opacity-30';
-  }
-}
-
 function effectFadeStyle(index: number) {
   return `${
     currentIndex.value === index
@@ -238,16 +218,6 @@ onMounted(() => {
     carouselRef.value.focus(); // 자동 포커스
   }
 });
-
-const getParallaxStyle = (index: number, offset: number) => {
-  const progress = currentIndex.value - index;
-  const translateXValue = offset * progress;
-
-  return {
-    transform: `translateX(${translateXValue}px)`,
-    transition: 'transform 0.6s ease',
-  };
-};
 </script>
 
 <template>
@@ -305,7 +275,8 @@ const getParallaxStyle = (index: number, offset: number) => {
       :imageItems="imageItems"
       :pagination="pagination"
       :imageItemsLength="imageItems.length"
-      :getPaginationClass="getPaginationClass"
+      :currentIndex="currentIndex"
+      :dynamicBullets="props.dynamicBullets"
       :goToImage="goToImage"
     />
 

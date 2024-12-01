@@ -1,13 +1,34 @@
 <script setup lang="ts">
 import type { ImageItemsType } from '@/types/items.type';
 
-defineProps<{
+const props = defineProps<{
   imageItems: ImageItemsType[];
   pagination: boolean;
   imageItemsLength: number;
-  getPaginationClass: (idx: number) => string;
+  currentIndex: number;
+  dynamicBullets: boolean;
   goToImage: (idx: number) => void;
 }>();
+
+function getPaginationClass(idx: number) {
+  const isActive = idx === props.currentIndex;
+  const isNextOrPrev =
+    idx === props.currentIndex - 1 || idx === props.currentIndex + 1;
+
+  if (props.dynamicBullets) {
+    return isActive
+      ? 'opacity-100 scale-125' // 현재 idx
+      : isNextOrPrev
+      ? 'opacity-70 scale-100' // 현재 idx 앞뒤
+      : 'opacity-30 scale-75'; // 나머지 idx
+  } else {
+    return isActive
+      ? 'opacity-100'
+      : isNextOrPrev
+      ? 'opacity-40'
+      : 'opacity-30';
+  }
+}
 </script>
 
 <template>
