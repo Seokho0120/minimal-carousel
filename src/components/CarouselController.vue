@@ -1,12 +1,12 @@
 <script setup lang="ts">
 defineProps<{
-  imageItemsLength?: number;
-  showPrevButton?: boolean;
-  showNextButton?: boolean;
-  currentIndex?: number;
-  prevHandler?: () => void;
-  nextHandler?: () => void;
-  handleButtonClick?: () => void;
+  imageItemsLength: number;
+  showPrevButton: boolean;
+  showNextButton: boolean;
+  currentIndex: number;
+  prevHandler: () => void;
+  nextHandler: () => void;
+  handleButtonClick: () => void;
 }>();
 </script>
 

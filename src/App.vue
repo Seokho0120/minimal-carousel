@@ -34,6 +34,7 @@ const TEST = [
         disableOnInteraction
         pauseOnMouseEnter
         stopOnLastSlide
+        pagination
       />
     </div>
   </div>

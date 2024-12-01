@@ -2,6 +2,7 @@
 import { computed, onMounted, ref, toRefs, watch } from 'vue';
 import type { ImageItemsType } from '@/types/items.type';
 import CarouselController from './CarouselController.vue';
+import CarouselPagination from './CarouselPagination.vue';
 
 const props = withDefaults(
   defineProps<{
@@ -319,18 +320,13 @@ const getParallaxStyle = (index: number, offset: number) => {
       :handleButtonClick="handleButtonClick"
     />
 
-    <ul
-      v-if="pagination && imageItems.length > 1"
-      class="absolute bottom-4 flex w-full justify-center gap-2"
-    >
-      <li
-        v-for="(_, idx) in imageItems"
-        :key="idx"
-        :class="`${getPaginationClass(idx)} h-[0.5rem] w-[0.5rem] rounded-full 
-        bg-white transition-all duration-300 cursor-pointer`"
-        @click="goToImage(idx)"
-      />
-    </ul>
+    <CarouselPagination
+      :imageItems="imageItems"
+      :pagination="pagination"
+      :imageItemsLength="imageItems.length"
+      :getPaginationClass="getPaginationClass"
+      :goToImage="goToImage"
+    />
 
     <div
       v-if="showScrollbar"
