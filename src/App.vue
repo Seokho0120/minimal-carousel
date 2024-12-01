@@ -30,11 +30,18 @@ const TEST = [
     <div class="w-2/4 h-full">
       <MinimalCarousel
         :imageItems="TEST"
-        autoPlay
-        disableOnInteraction
-        pauseOnMouseEnter
-        stopOnLastSlide
-        scrollbar
+        :contents="[
+          {
+            title: '하이',
+            subTitle: 'ㅁㄴㅇ',
+            content: 'ㅁㄴㅇㅁㄴ',
+          },
+          {
+            title: '하이2',
+            subTitle: 'ㅁㄴㅇ2',
+            content: 'ㅁㄴㅇㅁㄴ2',
+          },
+        ]"
       />
     </div>
   </div>

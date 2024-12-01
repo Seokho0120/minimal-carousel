@@ -4,6 +4,7 @@ import type { ImageItemsType } from '@/types/items.type';
 import CarouselController from './CarouselController.vue';
 import CarouselPagination from './CarouselPagination.vue';
 import CarouselScrollbar from './CarouselScrollbar.vue';
+import CarouselContents from './CarouselContents.vue';
 
 const props = withDefaults(
   defineProps<{
@@ -272,34 +273,13 @@ const getParallaxStyle = (index: number, offset: number) => {
         @mouseenter="handleMouseEnter"
         @mouseleave="handleMouseEnter"
       >
-        <div v-if="props.contents" class="relative">
-          <h1
-            class="absolute top-5 left-5 text-xl font-bold"
-            :style="getParallaxStyle(index, -300)"
-          >
-            {{ props.contents[index]?.title }}
-          </h1>
-          <h2
-            class="absolute top-20 left-5 text-lg"
-            :style="getParallaxStyle(index, -200)"
-          >
-            {{ props.contents[index]?.subTitle }}
-          </h2>
-          <div
-            class="absolute top-32 left-5 text-sm"
-            :style="getParallaxStyle(index, -100)"
-          >
-            {{ props.contents[index]?.content }}
-          </div>
-
-          <img
-            :src="image.link"
-            :alt="image.name"
-            draggable="false"
-            class="w-full h-full object-cover"
-          />
-        </div>
-
+        <CarouselContents
+          v-if="props.contents && props.contents.length > index"
+          :contents="props.contents[index]"
+          :index="index"
+          :current-index="currentIndex"
+          :image="image"
+        />
         <div v-else>
           <img
             :src="image.link"
