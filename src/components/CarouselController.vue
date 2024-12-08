@@ -4,9 +4,12 @@ defineProps<{
   showPrevButton: boolean;
   showNextButton: boolean;
   currentIndex: number;
-  prevHandler: () => void;
-  nextHandler: () => void;
-  handleButtonClick: () => void;
+}>();
+
+const emit = defineEmits<{
+  (event: 'prev'): void;
+  (event: 'next'): void;
+  (event: 'pause-activated'): void;
 }>();
 </script>
 
@@ -14,7 +17,7 @@ defineProps<{
   <div>
     <slot
       name="prev-btn"
-      :goToPrev="prevHandler"
+      :goToPrev="emit('prev')"
       :defaultClass="'absolute left-4 top-1/2'"
     >
       <button
@@ -22,8 +25,8 @@ defineProps<{
         type="button"
         @click="
           () => {
-            handleButtonClick?.();
-            prevHandler?.();
+            emit('pause-activated');
+            emit('prev');
           }
         "
         :class="`absolute left-4 top-1/2 h-[1.8rem] w-[1.8rem] flex items-center justify-center rounded-full bg-white opacity-40 hover:opacity-60 ${
@@ -51,7 +54,7 @@ defineProps<{
 
     <slot
       name="next-btn"
-      :goToNext="nextHandler"
+      :goToNext="emit('next')"
       :defaultClass="'absolute right-4 top-1/2'"
     >
       <button
@@ -59,8 +62,8 @@ defineProps<{
         type="button"
         @click="
           () => {
-            handleButtonClick?.();
-            nextHandler?.();
+            emit('pause-activated');
+            emit('next');
           }
         "
         :class="`absolute right-4 top-1/2 h-[1.8rem] w-[1.8rem] flex items-center justify-center rounded-full bg-white opacity-40 hover:opacity-60 ${

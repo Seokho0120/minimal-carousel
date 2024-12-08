@@ -49,7 +49,7 @@ const showScrollbar = computed(() => scrollbar.value ?? false);
 const currentIndex = ref(0);
 const buttonClicked = ref(false);
 
-function handleButtonClick() {
+function handlePauseOnClick() {
   buttonClicked.value = true;
 }
 
@@ -143,35 +143,43 @@ watch(
   <div class="overflow-hidden relative flex-shrink-0">
     <CarouselItems
       :imageItems="imageItems"
-      :contents="props.contents"
+      :contents="contents"
       :currentIndex="currentIndex"
-      :keyboardControl="props.keyboardControl"
-      :effectFade="props.effectFade"
-      :disableOnInteraction="props.disableOnInteraction"
-      :pauseOnMouseEnter="props.pauseOnMouseEnter"
-      :handleInteraction="handleInteraction"
-      :handleMouseEnter="handleMouseEnter"
+      :keyboardControl="keyboardControl"
+      :effectFade="effectFade"
+      :disableOnInteraction="disableOnInteraction"
+      :pauseOnMouseEnter="pauseOnMouseEnter"
+      @interaction="handleInteraction"
+      @mouse-enter="handleMouseEnter"
       @prev="prevHandler"
       @next="nextHandler"
     />
 
     <CarouselController
       :imageItemsLength="imageItems.length"
-      :showPrevButton="props.showPrevButton"
-      :showNextButton="props.showNextButton"
+      :showPrevButton="showPrevButton"
+      :showNextButton="showNextButton"
       :currentIndex="currentIndex"
-      :prevHandler="prevHandler"
-      :nextHandler="nextHandler"
-      :handleButtonClick="handleButtonClick"
-    />
+      @prev="prevHandler"
+      @next="nextHandler"
+      @pause-activated="handlePauseOnClick"
+    >
+      <template #prev-btn="slotProps">
+        <slot name="prev-btn" v-bind="slotProps" />
+      </template>
+
+      <template #next-btn="slotProps">
+        <slot name="next-btn" v-bind="slotProps" />
+      </template>
+    </CarouselController>
 
     <CarouselPagination
       :imageItems="imageItems"
       :pagination="pagination"
       :imageItemsLength="imageItems.length"
       :currentIndex="currentIndex"
-      :dynamicBullets="props.dynamicBullets"
-      :goToImage="goToImage"
+      :dynamicBullets="dynamicBullets"
+      @go-to-image="goToImage"
     />
 
     <CarouselScrollbar

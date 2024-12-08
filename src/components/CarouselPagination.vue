@@ -7,7 +7,10 @@ const props = defineProps<{
   imageItemsLength: number;
   currentIndex: number;
   dynamicBullets: boolean;
-  goToImage: (idx: number) => void;
+}>();
+
+const emit = defineEmits<{
+  (event: 'go-to-image', idx: number): void;
 }>();
 
 function getPaginationClass(idx: number) {
@@ -44,7 +47,7 @@ function getPaginationClass(idx: number) {
           idx,
         )} h-[0.5rem] w-[0.5rem] rounded-full 
         bg-white transition-all duration-300 cursor-pointer`"
-        @click="goToImage?.(idx)"
+        @click="emit('go-to-image', idx)"
       />
     </ul>
   </div>
