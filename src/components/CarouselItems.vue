@@ -15,13 +15,13 @@ const props = defineProps<{
   effectFade: boolean;
   disableOnInteraction: boolean;
   pauseOnMouseEnter: boolean;
-  handleInteraction: () => void;
-  handleMouseEnter: () => void;
 }>();
 
 const emit = defineEmits<{
   (event: 'prev'): void;
   (event: 'next'): void;
+  (event: 'interaction'): void;
+  (event: 'mouse-enter'): void;
 }>();
 
 const carouselRef = ref<HTMLElement | null>(null);
@@ -123,9 +123,9 @@ onMounted(() => {
       :class="`flex-shrink-0 w-full h-full ${
         effectFade && effectFadeStyle(index)
       }`"
-      @click="handleInteraction"
-      @mouseenter="handleMouseEnter"
-      @mouseleave="handleMouseEnter"
+      @click="emit('interaction')"
+      @mouseenter="emit('mouse-enter')"
+      @mouseleave="emit('mouse-enter')"
     >
       <CarouselContents
         v-if="props.contents && props.contents.length > index"
