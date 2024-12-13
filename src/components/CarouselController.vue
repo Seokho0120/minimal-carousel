@@ -17,7 +17,7 @@ const emit = defineEmits<{
   <div>
     <slot
       name="prev-btn"
-      :goToPrev="emit('prev')"
+      :goToPrev="() => emit('prev')"
       :defaultClass="'absolute left-4 top-1/2'"
     >
       <button
@@ -54,7 +54,7 @@ const emit = defineEmits<{
 
     <slot
       name="next-btn"
-      :goToNext="emit('next')"
+      :goToNext="() => emit('next')"
       :defaultClass="'absolute right-4 top-1/2'"
     >
       <button
