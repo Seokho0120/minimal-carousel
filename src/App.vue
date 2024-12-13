@@ -29,6 +29,20 @@ const TEST = [
 
     <div class="w-2/4 h-full">
       <MinimalCarousel :imageItems="TEST" />
+
+      <!-- <MinimalCarousel :imageItems="TEST">
+        <template #prev-btn="{ defaultClass, goToPrev }">
+          <span @click="goToPrev" class="bg-red-200" :class="defaultClass"
+            >prev</span
+          >
+        </template>
+
+        <template #next-btn="{ defaultClass, goToNext }">
+          <span @click="goToNext" class="bg-blue-200" :class="defaultClass"
+            >next</span
+          >
+        </template>
+      </MinimalCarousel> -->
     </div>
   </div>
 </template>

@@ -48,8 +48,8 @@ The component accepts the following props
 | Prop Name            | Type                    | Default Value | Description                                                                         |
 | -------------------- | ----------------------- | ------------- | ----------------------------------------------------------------------------------- |
 | imageItems           | `Array<ImageItemsType>` | Required      | An array of image objects, each containing a link and name property.                |
-| showPrevButton       | `Boolean`               | false         | Show or hide the previous button.                                                   |
-| showNextButton       | `Boolean`               | false         | Show or hide the next button.                                                       |
+| showPrevButton       | `Boolean`               | true          | Show or hide the previous button.                                                   |
+| showNextButton       | `Boolean`               | true          | Show or hide the next button.                                                       |
 | pagination           | `Boolean`               | false         | Show or hide the pagination.                                                        |
 | scrollbar            | `Boolean`               | false         | Show or hide the scrollbar.                                                         |
 | autoPlay             | `Boolean`               | false         | Enable or disable auto play.                                                        |
