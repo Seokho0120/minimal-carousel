@@ -21,10 +21,10 @@ const props = withDefaults(
     stopOnLastSlide?: boolean;
     effectFade?: boolean;
     keyboardControl?: boolean;
-    contents?: {
+    contents: {
       title: string;
-      subTitle: string;
-      content: string;
+      subTitle?: string;
+      content?: string;
     }[];
   }>(),
   {

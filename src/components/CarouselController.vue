@@ -42,7 +42,6 @@ const emit = defineEmits<{
             viewBox="0 0 16 16"
           >
             <path
-              fill="currentColor"
               fill-rule="evenodd"
               d="M14 8a.75.75 0 0 1-.75.75H4.56l1.22 1.22a.75.75 0 1 1-1.06 1.06l-2.5-2.5a.75.75 0 0 1 0-1.06l2.5-2.5a.75.75 0 0 1 1.06 1.06L4.56 7.25h8.69A.75.75 0 0 1 14 8"
               clip-rule="evenodd"
@@ -83,7 +82,6 @@ const emit = defineEmits<{
             viewBox="0 0 16 16"
           >
             <path
-              fill="currentColor"
               fill-rule="evenodd"
               d="M2 8c0 .414.336.75.75.75h8.69l-1.22 1.22a.75.75 0 1 0 1.06 1.06l2.5-2.5a.75.75 0 0 0 0-1.06l-2.5-2.5a.75.75 0 1 0-1.06 1.06l1.22 1.22H2.75A.75.75 0 0 0 2 8"
               clip-rule="evenodd"

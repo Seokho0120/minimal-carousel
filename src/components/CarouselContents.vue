@@ -3,9 +3,9 @@ import type { ImageItemsType } from '@/types/items.type';
 
 const props = defineProps<{
   contents: {
-    title: string;
-    subTitle: string;
-    content: string;
+    title?: string;
+    subTitle?: string;
+    content?: string;
   };
   index: number;
   currentIndex: number;
@@ -29,24 +29,24 @@ const getParallaxStyle = (index: number, offset: number) => {
       class="absolute top-5 left-5 text-xl font-bold"
       :style="getParallaxStyle(index, -300)"
     >
-      {{ contents.title }}
+      {{ contents?.title }}
     </h1>
     <h2
       class="absolute top-20 left-5 text-lg"
       :style="getParallaxStyle(index, -200)"
     >
-      {{ contents.subTitle }}
+      {{ contents?.subTitle }}
     </h2>
     <div
       class="absolute top-32 left-5 text-sm"
       :style="getParallaxStyle(index, -100)"
     >
-      {{ contents.content }}
+      {{ contents?.content }}
     </div>
 
     <img
       :src="image.link"
-      :alt="image.name"
+      :alt="image?.name || ''"
       draggable="false"
       class="w-full h-full object-cover"
     />
