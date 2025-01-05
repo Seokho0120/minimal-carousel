@@ -5,10 +5,10 @@ import type { ImageItemsType } from '@/types/items.type';
 
 const props = defineProps<{
   imageItems: ImageItemsType[];
-  contents?: {
+  contents: {
     title: string;
-    subTitle: string;
-    content: string;
+    subTitle?: string;
+    content?: string;
   }[];
   currentIndex: number;
   keyboardControl: boolean;
@@ -137,7 +137,7 @@ onMounted(() => {
       <div v-else>
         <img
           :src="image.link"
-          :alt="image.name"
+          :alt="image?.name || ''"
           draggable="false"
           class="w-full h-full object-cover"
         />

@@ -21,6 +21,12 @@ const TEST = [
     name: '3',
   },
 ];
+
+const sliderContents = [
+  { title: 'Title 1', subTitle: 'Subtitle 1', content: 'Content 1' },
+  { title: 'Title 2', content: 'Content 2' },
+  { title: 'Title 3', subTitle: 'Subtitle 3' },
+];
 </script>
 
 <template>
@@ -28,13 +34,17 @@ const TEST = [
     <h1 class="text-3xl font-bold mb-4">Hello Minimal Carousel</h1>
 
     <div class="w-2/4 h-full">
-      <MinimalCarousel :imageItems="TEST" />
+      <MinimalCarousel
+        :imageItems="TEST"
+        :contents="sliderContents"
+        class="text-white"
+      />
 
       <!-- <MinimalCarousel :imageItems="TEST">
         <template #prev-btn="{ defaultClass, goToPrev }">
           <span @click="goToPrev" class="bg-red-200" :class="defaultClass"
-            >prev</span
-          >
+            >prev
+          </span>
         </template>
 
         <template #next-btn="{ defaultClass, goToNext }">
